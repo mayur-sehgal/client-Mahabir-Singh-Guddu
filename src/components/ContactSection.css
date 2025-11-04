@@ -311,9 +311,15 @@
         font-size: 1.7rem;
     }
 
-    .official-details p {
+    .detail-para {
         font-size: 1rem;
         line-height: 1.6;
+        text-align: justify;
+    }
+    .info-box p {
+        font-size: 1rem;
+        line-height: 1.6;
+        text-align: left;
     }
 
     .info-box {

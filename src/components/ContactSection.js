@@ -72,7 +72,7 @@ const ContactSection = ({ colors = { primary: '#800000', secondary: '#FF9933', d
                 {/* --- Left Column: Official Details --- */}
                 <div className="official-details">
                     <h3 className="detail-heading">Official Capacity</h3>
-                    <p>
+                    <p className='detail-para'>
                         As the Additional Director of the Haryana Kala Parishad, all official inquiries regarding cultural policy, state events, and government collaborations should be directed through the main office.
                     </p>
                     

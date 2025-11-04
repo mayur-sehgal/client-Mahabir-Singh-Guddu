@@ -242,7 +242,7 @@
     }
     .section-title { font-size: 2rem; text-align: center; }
     .key-facts {
-        padding-left: 0; border-left: none; text-align: center;
+        padding-left: 0; border-left: none; text-align: left;
         max-width: 100%;
     }
 }

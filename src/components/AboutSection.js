@@ -88,9 +88,9 @@ const AboutSection = () => {
                     
                     <div className="key-facts">
                         {/* Key facts animations will now also be controlled by the parent's visibility */}
-                        <p>📍 <strong>Born:</strong> 10 October 1961, Gangoli (Jind), Haryana, India.</p>
-                        <p>🧑‍🎤 <strong>Debut:</strong> Age 11, influenced by his <strong>Poet Father</strong> during the freedom-struggle era.</p>
-                        <p>🎭 <strong>Specialty:</strong> Haryanvi folk culture (Music, Dance, Theatrics).</p>
+                        <p> <strong>Born:</strong> 10 October 1961, Gangoli (Jind), Haryana, India.</p>
+                        <p> <strong>Debut:</strong> Age 11, influenced by his <strong>Poet Father</strong> during the freedom-struggle era.</p>
+                        <p> <strong>Specialty:</strong> Haryanvi folk culture (Music, Dance, Theatrics).</p>
                     </div>
                 </div>
 
