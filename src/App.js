@@ -1,58 +1,24 @@
-import React from 'react';
-import './App.css'; // Assume basic styles are here
-import Header from './components/Header';
-import HomeSection from './sections/HomeSection';
-import AboutSection from './sections/AboutSection';
-import LegacySection from './sections/LegacySection';
-import HonoursSection from './sections/HonoursSection';
-import GallerySection from './sections/GallerySection';
-import ContactSection from './sections/ContactSection';
-import Footer from './components/Footer';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "./components/Home";
+import ContactSection from "./components/ContactSection";
+import Header from "./components/Header";
+import AboutSection from "./components/AboutSection";
+import LegacySection from "./components/LegactSection";
+import HonoursSection from "./components/HonoursSection";
+import GallerySection from "./components/GallerySection";
 
-// Define color palette for quick reference in inline styles
-const colors = {
-  primary: '#800000', // Earthy Red/Maroon
-  secondary: '#FFCC33', // Saffron/Gold
-  text: '#333333',
-  background: '#F8F8F8',
-};
-
-const App = () => {
+export default function App() {
   return (
-    <div className="App">
-      {/* Fixed Navigation Header */}
-      <Header colors={colors} /> 
-
-      <main>
-        {/* Sections linked via IDs for smooth scrolling */}
-        <div id="home">
-          <HomeSection colors={colors} />
-        </div>
-        
-        <div id="about">
-          <AboutSection colors={colors} />
-        </div>
-        
-        <div id="legacy">
-          <LegacySection colors={colors} />
-        </div>
-        
-        <div id="honours">
-          <HonoursSection colors={colors} />
-        </div>
-        
-        <div id="gallery">
-          <GallerySection colors={colors} />
-        </div>
-        
-        <div id="contact">
-          <ContactSection colors={colors} />
-        </div>
-      </main>
-
-      <Footer colors={colors} />
-    </div>
+    <Router>
+      <Header/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutSection />} />
+        <Route path="/legacy" element={<LegacySection />} />
+        <Route path="/honours" element={<HonoursSection />} />
+        <Route path="/gallery" element={<GallerySection />} />
+        <Route path="/contact" element={<ContactSection />} />
+      </Routes>
+    </Router>
   );
-};
-
-export default App;
+}

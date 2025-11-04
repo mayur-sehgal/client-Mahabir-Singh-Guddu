@@ -1,0 +1,315 @@
+/* --- HonoursSection.css --- */
+
+/* ---------------------------------------------------- */
+/* --- 0. COLOR VARIABLES & ROOT STYLES --- */
+/* ---------------------------------------------------- */
+:root {
+    /* Defined Color Palette */
+    --color-primary-maroon: #800000;      /* Deep Maroon (Headings, Main Accent) */
+    --color-secondary-saffron: #FF9933;   /* Saffron/Orange (Highlight, Glow) */
+    --color-deep-green: #006400;          /* Dark Green (Detail Text, Category Tags) */
+    --color-background-offwhite: #FAF9F6; /* Section Background */
+    --color-text-dark: #333333;           /* Main Body Text */
+    --color-card-light: #ffffff;          /* Card Background */
+}
+
+/* --- 1. Base Section & Scroll Reveal --- */
+.honours-section {
+    padding: 100px 5%;
+    position: relative;
+    overflow: hidden;
+    /* Initial state for scroll reveal */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: none;
+}
+
+/* Triggered by JS */
+.honours-section.is-visible {
+    animation: slideInUp 1s ease-out forwards;
+}
+
+.honours-title {
+    text-align: center;
+    font-size: 3.5rem; /* Enhanced size */
+    font-weight: 900;
+    margin-bottom: 70px;
+    letter-spacing: 1px;
+    /* Uses Primary color via inline style in React, but we can set defaults here: */
+    color: var(--color-primary-maroon); 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------------------------------------------------- */
+/* --- 2. Padma Shri Card (The Star) --- */
+/* ---------------------------------------------------- */
+.padma-shri-card {
+    max-width: 900px; 
+    margin: 0 auto 100px;
+    padding: 40px; 
+    border-radius: 20px; 
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    /* Prestige Gradient */
+    background: linear-gradient(135deg, var(--color-card-light) 10%, #f7f7f7 90%);
+    /* Shadow using Primary color */
+    box-shadow: 0 20px 40px rgba(128, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    
+    /* Animation: Independent, fast entrance */
+    opacity: 0;
+    transform: scale(0.9);
+    animation: scaleIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.5s forwards;
+}
+
+/* Badge/Icon Container - Enhanced for image display */
+.star-icon {
+    width: 150px; 
+    height: 150px;
+    border-radius: 10px; 
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Glow using Secondary color */
+    box-shadow: 0 0 20px var(--color-secondary-saffron); 
+    border: 5px solid var(--color-card-light); /* Inner white border */
+}
+
+.star-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05); 
+}
+
+.padma-content {
+    flex-grow: 1;
+}
+
+.award-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--color-primary-maroon); 
+    /* Subtle saffron text shadow */
+    text-shadow: 1px 1px 1px var(--color-secondary-saffron);
+}
+
+.award-citation {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--color-text-dark);
+}
+
+.citation-detail {
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    /* Color handled via inline style in React component */
+}
+
+/* ---------------------------------------------------- */
+/* --- 3. Awards Timeline (Impressive Look) --- */
+/* ---------------------------------------------------- */
+.timeline-heading {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    /* Color handled via inline style in React component */
+    margin: 80px 0 50px;
+}
+
+.awards-timeline {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+/* Timeline vertical line */
+.awards-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 45px;
+    width: 3px;
+    height: 100%;
+    /* Subtle saffron line */
+    background-color: rgba(255, 153, 51, 0.3); 
+}
+
+.timeline-entry {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 35px;
+    padding: 10px 0 10px 0;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.timeline-entry:hover {
+    /* Hover background using Primary color opacity */
+    background-color: rgba(128, 0, 0, 0.08); 
+    border-radius: 8px;
+    transform: translateX(5px);
+}
+
+/* Timeline Year Tag (Pill) */
+.timeline-year {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-card-light);
+  background: linear-gradient(135deg, var(--color-primary-maroon), var(--color-secondary-saffron));
+  padding: 6px 18px;
+  margin: auto 0;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(128, 0, 0, 0.25);
+  display: inline-block;
+  letter-spacing: 0.6px;
+  flex-shrink: 0;
+  position: relative;
+  transform: translateX(-20px) scale(0.95);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.timeline-year::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--color-deep-green);
+  border: 2px solid var(--color-card-light);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--color-secondary-saffron);
+}
+
+.timeline-year.visible {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+}
+
+
+/* Timeline Connector Dot */
+.timeline-year::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -33px; 
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--color-card-light);
+    border: 3px solid var(--color-primary-maroon);
+    /* Saffron glow */
+    box-shadow: 0 0 0 4px var(--color-secondary-saffron);
+    z-index: 2;
+}
+
+/* Hover effect for year pill */
+.timeline-entry:hover .timeline-year {
+    transform: translateX(0) scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.timeline-detail {
+    text-align: left;
+    padding-right: 10px;
+}
+
+.timeline-detail h4 {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-weight: 700;
+    /* Color handled via inline style in React component */
+}
+
+.category-tag2 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--color-deep-green);
+}
+
+/* --- 4. Keyframe Animations --- */
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Staggered Timeline Animation (Triggered by inline delay) */
+.honours-section.is-visible .timeline-year {
+    animation: slideAndScaleIn 0.5s ease-out forwards;
+}
+
+@keyframes slideAndScaleIn {
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* ---------------------------------------------------- */
+/* --- 5. Mobile Responsiveness --- */
+/* ---------------------------------------------------- */
+@media (max-width: 850px) {
+    .padma-shri-card {
+        max-width: 95%;
+        flex-direction: column;
+        text-align: center;
+        gap: 25px;
+        padding: 30px 20px;
+    }
+
+    .star-icon {
+        width: 120px;
+        height: 120px;
+    }
+
+    .award-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 550px) {
+    .honours-title {
+        font-size: 2.5rem;
+    }
+    
+    .padma-shri-card {
+        padding: 20px 15px;
+    }
+
+    .awards-timeline::before {
+        left: 20px;
+    }
+
+    .timeline-year::before {
+        left: -18px;
+    }
+
+    .timeline-entry {
+        gap: 15px;
+        padding-left: 5px;
+    }
+}

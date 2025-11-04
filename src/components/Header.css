@@ -1,0 +1,172 @@
+/* --- 1. Base Header & Sticky Effect --- */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 5px 5%;
+    background-color: var(--color-maroon);
+    color: var(--color-background-offwhite);
+    
+    /* Enhanced initial shadow for depth */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); 
+    
+    /* Smooth transition for all properties */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* New: Change appearance slightly when scrolling (needs JS or a scroll library, but we can style for a conceptual 'scrolled' class) */
+/* If you add a .scrolled class via JS on scroll, this effect will trigger: */
+/*
+.header.scrolled {
+    padding: 10px 5%;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+.header.scrolled h1 {
+    font-size: 1.6rem;
+}
+*/
+
+.header h1 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 0 var(--color-saffron);
+    transition: font-size 0.4s;
+}
+
+/* --- 2. Desktop Navigation Links (3D Press Effect) --- */
+.nav-links {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-links a {
+    color: var(--color-background-offwhite);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 8px 0;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* New Animation: Subtle 3D Press on Hover */
+.nav-links a:hover {
+    color: var(--color-saffron);
+    /* Push the link text slightly down/forward */
+    transform: translateY(-2px); 
+    text-shadow: 0 0 5px var(--color-saffron); /* Subtle saffron glow */
+}
+
+/* Interactive Hover Line (More dramatic) */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: var(--color-saffron);
+    
+    /* Use springy cubic-bezier for a snappier look */
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), left 0.4s ease-out;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    left: 0; 
+}
+
+/* --- 3. Mobile/Hamburger Icon (Spin and Color Shift) --- */
+.hamburger-icon {
+    display: none; 
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--color-saffron);
+    z-index: 1001;
+    
+    /* Add transition for spin effect */
+    transition: transform 0.4s ease-in-out, color 0.3s;
+}
+
+/* Rotate the icon when the menu is open */
+.header .hamburger-icon:active,
+.header .hamburger-icon:hover {
+    color: white;
+}
+
+/* The React component changes the content to '✕' when open. */
+.header .hamburger-icon[style*="✕"] { /* This is a general way to target the '✕' state without extra classes */
+    transform: rotate(90deg);
+}
+
+/* --- 4. Mobile Responsiveness (Dynamic Panel Entrance) --- */
+@media (max-width: 900px) {
+    .header{
+
+    }
+    .hamburger-icon {
+        display: block; 
+    }
+
+    .nav-links {
+        position: fixed;
+        padding:4px 0;
+        top: 0;
+        right: 0;
+        width: 60%; /* Slightly wider panel */
+        height: 100vh;
+        
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start; /* Align links left for better readability */
+        
+        background-color: var(--color-maroon);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7);
+
+        transform: translateX(100%); 
+        padding-left: 10%; /* Padding for align-items: flex-start */
+    }
+    
+    /* Panel Entrance Animation: Smoother Slide */
+    .nav-links.open {
+        transform: translateX(0);
+        transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); /* Slower, smoother ease */
+    }
+
+    .nav-links a {
+        font-size: 1rem; /* Slightly larger links */
+        margin: 5px 0;
+        opacity: 0; /* Start hidden for staggered entrance */
+        
+        /* Staggered entrance animation applied when open */
+        transition: opacity 0.5s ease-in, transform 0.3s ease-in;
+        transform: translateX(15px);
+    }
+    
+    /* New: Staggered Link Animation when Menu Opens */
+    .nav-links.open a {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .nav-links.open a:nth-child(1) { transition-delay: 0.1s; }
+    .nav-links.open a:nth-child(2) { transition-delay: 0.15s; }
+    .nav-links.open a:nth-child(3) { transition-delay: 0.2s; }
+    .nav-links.open a:nth-child(4) { transition-delay: 0.25s; }
+    .nav-links.open a:nth-child(5) { transition-delay: 0.3s; }
+    .nav-links.open a:nth-child(6) { transition-delay: 0.35s; }
+
+    /* Mobile active state (no line) */
+    .nav-links a:hover {
+        background-color: rgba(255, 153, 51, 0.1); 
+        color: var(--color-saffron);
+        border-radius: 4px;
+    }
+}

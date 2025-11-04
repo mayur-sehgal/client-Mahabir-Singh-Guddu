@@ -1,0 +1,229 @@
+/* --- LegacySection.css --- */
+
+/* ---------------------------------------------------- */
+/* --- 1. Initial State & Reveal Animation --- */
+/* ---------------------------------------------------- */
+.legacy-section {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 100px 5%; /* Base padding */
+}
+
+.legacy-section.is-visible {
+    opacity: 1;
+}
+
+.legacy-section.is-visible .legacy-card {
+    animation: fadeInSlideUp 0.8s forwards;
+}
+
+@keyframes fadeInSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------------------------------------------------- */
+/* --- 2. Grid Layout --- */
+/* ---------------------------------------------------- */
+.legacy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ---------------------------------------------------- */
+/* --- 3. Card Styles --- */
+/* ---------------------------------------------------- */
+.legacy-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: justify;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.4s ease-out;
+    cursor: pointer;
+}
+
+.legacy-card:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+}
+
+/* ---------------------------------------------------- */
+/* --- 4. Image / Icon Section --- */
+/* ---------------------------------------------------- */
+.legacy-card .icon {
+    width: 100%;
+    max-width: 350px;
+    height: 220px;
+    margin: 0 auto 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.legacy-card .icon:hover {
+    transform: scale(1.05);
+}
+
+.legacy-card .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease;
+}
+
+.legacy-card .icon img:hover {
+    transform: scale(1.15);
+}
+
+/* ---------------------------------------------------- */
+/* --- 5. Typography --- */
+/* ---------------------------------------------------- */
+.legacy-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.legacy-card p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    text-align: left;
+    color: #444;
+}
+
+.legacy-card p strong {
+    font-weight: 700;
+    color: #000;
+}
+
+/* ---------------------------------------------------- */
+/* --- 6. Responsive Adjustments --- */
+/* ---------------------------------------------------- */
+
+/* --- Tablets & Medium Screens --- */
+@media (max-width: 992px) {
+    .legacy-section {
+        padding: 80px 6%;
+    }
+
+    .legacy-grid {
+        gap: 30px;
+    }
+
+    .legacy-card {
+        padding: 25px;
+    }
+
+    .legacy-card .icon {
+        height: 200px;
+        max-width: 100%;
+    }
+
+    .legacy-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .legacy-card p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+}
+
+/* --- Mobile Devices --- */
+@media (max-width: 768px) {
+    .legacy-section {
+        padding: 60px 5%;
+    }
+
+    .legacy-grid {
+        gap: 25px;
+    }
+
+    .legacy-card {
+        padding: 22px 18px;
+    }
+
+    .legacy-card .icon {
+        height: 180px;
+        margin-bottom: 20px;
+    }
+
+    .legacy-card h3 {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .legacy-card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+}
+
+/* --- Small Phones --- */
+@media (max-width: 480px) {
+    .legacy-section {
+        padding: 50px 4%;
+    }
+
+    .legacy-grid {
+        gap: 20px;
+    }
+
+    .legacy-card {
+        padding: 18px;
+        border-radius: 10px;
+    }
+
+    .legacy-card .icon {
+        height: 160px;
+        border-radius: 10px;
+    }
+
+    .legacy-card .icon img {
+        border-radius: 10px;
+    }
+
+    .legacy-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .legacy-card p {
+        font-size: 0.9rem;
+        text-align: justify;
+    }
+}
+
+/* --- Extra Small (Under 360px) --- */
+@media (max-width: 360px) {
+    .legacy-card {
+        padding: 15px;
+    }
+
+    .legacy-card .icon {
+        height: 140px;
+    }
+
+    .legacy-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .legacy-card p {
+        font-size: 0.85rem;
+    }
+}

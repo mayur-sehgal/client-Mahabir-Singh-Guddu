@@ -1,0 +1,195 @@
+/* --- GallerySection.css (Responsive Version) --- */
+
+/* --- Base Section & Scroll Reveal --- */
+.gallery-section {
+    padding: 80px 5%;
+    position: relative;
+    overflow-x: hidden; /* Prevents horizontal overflow */
+}
+
+.gallery-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.gallery-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    font-style: italic;
+}
+
+/* --- Media Grid (Responsive Grid Layout) --- */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.media-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.9) translateY(40px);
+    transition: all 0.5s ease;
+}
+
+/* Hover Animation */
+.media-card:hover {
+    box-shadow: 0 15px 35px rgba(255, 153, 51, 0.5);
+    transform: scale(1.03);
+    z-index: 10;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Image */
+.image-placeholder {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    position: relative;
+}
+
+.placeholder-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.media-card:hover .placeholder-image {
+    transform: scale(1.1);
+}
+
+/* Content */
+.card-content {
+    padding: 18px;
+    text-align: left;
+}
+
+.card-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.category-tag {
+    display: inline-block;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* --- Animations --- */
+@keyframes fadeInScaleUp {
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.gallery-section.is-visible .media-card {
+    animation: fadeInScaleUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* --- RESPONSIVENESS --- */
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+    .gallery-section {
+        padding: 60px 6%;
+    }
+
+    .gallery-title {
+        font-size: 2.5rem;
+    }
+
+    .gallery-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+    }
+
+    .image-placeholder {
+        height: 280px;
+    }
+
+    .card-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .card-content p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    .gallery-section {
+        padding: 50px 4%;
+    }
+
+    .gallery-title {
+        font-size: 2.2rem;
+    }
+
+    .gallery-subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .media-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 20px;
+    }
+
+    .image-placeholder {
+        height: 350px;
+    }
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .card-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .card-content p {
+        font-size: 0.9rem;
+    }
+
+    .category-tag {
+        font-size: 0.75rem;
+        padding: 3px 8px;
+    }
+}
+
+/* Ultra-small devices (below 360px width) */
+@media (max-width: 360px) {
+    .gallery-title {
+        font-size: 1.9rem;
+    }
+
+    .gallery-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .image-placeholder {
+        height: 180px;
+    }
+}
