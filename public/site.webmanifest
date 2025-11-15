@@ -1,0 +1,44 @@
+{
+  "name": "Mahabir Singh Guddu | Folk Artist",
+  "short_name": "MSGuddu",
+  "description": "The official website for Padma Shri Mahabir Singh Guddu, dedicated to Haryanvi folk arts and cultural activism.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F9F7F3",
+  "theme_color": "#800000",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/maskable_icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "The Legacy",
+      "short_name": "Legacy",
+      "description": "Explore the five-decade journey and contributions.",
+      "url": "/legacy",
+      "icons": [{ "src": "/shortcut-legacy.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Booking",
+      "short_name": "Booking",
+      "description": "Inquire about performances and cultural programs.",
+      "url": "/contact",
+      "icons": [{ "src": "/shortcut-contact.png", "sizes": "192x192" }]
+    }
+  ]
+}

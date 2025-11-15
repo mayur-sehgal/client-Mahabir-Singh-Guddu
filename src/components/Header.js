@@ -17,6 +17,7 @@ const Header = () => {
   return (
     // Use className="header" to apply CSS styles
     <header className="header">
+
       <h1>
         Mahabir Singh Guddu
       </h1>

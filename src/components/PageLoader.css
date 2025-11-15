@@ -1,0 +1,53 @@
+/* Full-screen overlay to cover the page content */
+.page-loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-maroon, #800000); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; 
+    opacity: 1;
+    transition: opacity 0.2s ease-out; /* Prepare for the fade-out class */
+}
+
+/* Class to trigger the overlay fade-out */
+.page-loader-overlay.fade-out {
+    opacity: 0;
+}
+
+.loader-logo {
+    width: 50vw; 
+    height: auto;
+    object-fit: contain; 
+    transform: scale(1) rotate(0deg); /* Initialize transform for rotation */
+    opacity: 1;
+    
+    /* Removed the previous scale transition from here to handle rotation */
+    /* We'll manage scaling with animation, but keep general transition for properties like opacity */
+    transition: opacity .5s ease-out; 
+}
+
+/* Keyframes for a continuous, slow rotation */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Class added via React state to trigger the animation */
+.loader-logo.animated {
+    /* Apply the slow spin animation */
+    animation: spinSlow 10s linear infinite; /* 5s duration, continuous, even speed */
+    
+    /* Simultaneously, handle the enlargement and fade-out here */
+    transform: scale(50); /* Enlarges the logo massively to fill the screen */
+    opacity: 0.1; /* Fade out the logo as it gets huge */
+    transition: transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s ease-out; /* Keep these for enlargement */
+}

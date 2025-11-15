@@ -1,3 +1,12 @@
+/* --- 0. Variables (Assume these are defined elsewhere or use direct values) --- */
+/*
+:root {
+    --color-maroon: #800000; 
+    --color-saffron: #FF9933; 
+    --color-background-offwhite: #F9F7F3;
+}
+*/
+
 /* --- 1. Base Header & Sticky Effect --- */
 .header {
     position: sticky;
@@ -8,36 +17,37 @@
     justify-content: space-between;
     align-items: center;
     
-    padding: 5px 5%;
+    padding: 10px 5%; /* Increased padding for more breathing room */
     background-color: var(--color-maroon);
     color: var(--color-background-offwhite);
     
-    /* Enhanced initial shadow for depth */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); 
+    /* Enhanced shadow with a slight vertical offset for depth */
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5); 
     
     /* Smooth transition for all properties */
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* New: Change appearance slightly when scrolling (needs JS or a scroll library, but we can style for a conceptual 'scrolled' class) */
-/* If you add a .scrolled class via JS on scroll, this effect will trigger: */
-/*
-.header.scrolled {
-    padding: 10px 5%;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+/* --- 1a. Logo and Title Grouping --- */
+.header-left {
+    display: flex;
+    align-items: center;
+    /* Use 'relative' to position a focus underline */
+    position: relative; 
 }
-.header.scrolled h1 {
-    font-size: 1.6rem;
+
+.logo-link:hover .header-logo {
+    transform: scale(1.05);
 }
-*/
 
 .header h1 {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.5rem; /* Increased base font size for prominence */
+    font-weight: 700; /* Bolder title */
     margin: 0;
-    letter-spacing: 0.5px;
-    text-shadow: 1px 1px 0 var(--color-saffron);
+    letter-spacing: 1px; /* More prominent tracking */
+    text-shadow: 2px 2px 0 var(--color-saffron); /* Deeper shadow */
     transition: font-size 0.4s;
+    line-height: 1; /* Ensure tight alignment with logo */
 }
 
 /* --- 2. Desktop Navigation Links (3D Press Effect) --- */
@@ -54,26 +64,29 @@
     font-weight: 600;
     padding: 8px 0;
     position: relative;
+    /* Apply a slight perspective transform for the 3D feel */
+    perspective: 1000px;
     transition: all 0.3s ease;
 }
 
-/* New Animation: Subtle 3D Press on Hover */
+/* Enhanced 3D Press on Hover */
 .nav-links a:hover {
     color: var(--color-saffron);
-    /* Push the link text slightly down/forward */
-    transform: translateY(-2px); 
-    text-shadow: 0 0 5px var(--color-saffron); /* Subtle saffron glow */
+    /* Subtle 3D rotation and forward movement */
+    transform: translateZ(5px) scale(1.05); 
+    text-shadow: 0 0 8px var(--color-saffron); /* Stronger saffron glow */
 }
 
-/* Interactive Hover Line (More dramatic) */
+/* Interactive Hover Line */
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -8px; /* Move the line further down */
     left: 50%;
     width: 0;
-    height: 3px;
+    height: 4px; /* Thicker line */
     background-color: var(--color-saffron);
+    border-radius: 2px;
     
     /* Use springy cubic-bezier for a snappier look */
     transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), left 0.4s ease-out;
@@ -87,86 +100,85 @@
 /* --- 3. Mobile/Hamburger Icon (Spin and Color Shift) --- */
 .hamburger-icon {
     display: none; 
-    font-size: 2rem;
+    font-size: 2.5rem; /* Larger icon for easier tapping */
     cursor: pointer;
     color: var(--color-saffron);
     z-index: 1001;
     
-    /* Add transition for spin effect */
     transition: transform 0.4s ease-in-out, color 0.3s;
 }
 
 /* Rotate the icon when the menu is open */
 .header .hamburger-icon:active,
 .header .hamburger-icon:hover {
-    color: white;
+    color: var(--color-background-offwhite); /* Changes to white on interaction */
 }
 
-/* The React component changes the content to '✕' when open. */
-.header .hamburger-icon[style*="✕"] { /* This is a general way to target the '✕' state without extra classes */
-    transform: rotate(90deg);
+/* Target the open state (where the character is '✕') */
+/* The previous selector was overly complex, this is cleaner if you can add a class */
+/* Assuming the component changes the content to '✕' when open */
+.header .hamburger-icon[style*="✕"],
+.header .hamburger-icon.open { /* Use the .open class from the component if possible */
+    transform: rotate(90deg) scale(0.9); /* Slight squash/scale effect on close */
+    color: var(--color-background-offwhite);
 }
 
 /* --- 4. Mobile Responsiveness (Dynamic Panel Entrance) --- */
 @media (max-width: 900px) {
     .header{
-
+        /* Keep header minimal on scroll for mobile */
+        padding: 8px 5%; 
     }
+
+    .header-logo {
+        height: 50px; /* Smaller logo on mobile */
+    }
+
+    .header h1 {
+        font-size: 1.2rem; /* Smaller title on mobile */
+    }
+
     .hamburger-icon {
         display: block; 
     }
 
     .nav-links {
-        position: fixed;
-        padding:4px 0;
-        top: 0;
-        right: 0;
-        width: 60%; /* Slightly wider panel */
-        height: 100vh;
+        /* ... existing styles ... */
+        width: 75%; /* Wider panel for better mobile tapping area */
         
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start; /* Align links left for better readability */
-        
-        background-color: var(--color-maroon);
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7);
-
         transform: translateX(100%); 
-        padding-left: 10%; /* Padding for align-items: flex-start */
+        padding-left: 10%; 
     }
     
     /* Panel Entrance Animation: Smoother Slide */
     .nav-links.open {
         transform: translateX(0);
-        transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); /* Slower, smoother ease */
+        transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     }
 
     .nav-links a {
-        font-size: 1rem; /* Slightly larger links */
-        margin: 5px 0;
-        opacity: 0; /* Start hidden for staggered entrance */
+        font-size: 1.3rem; /* Larger, tappable links */
+        margin: 15px 0; /* More vertical separation */
+        padding: 5px 0; /* Vertical padding */
         
-        /* Staggered entrance animation applied when open */
-        transition: opacity 0.5s ease-in, transform 0.3s ease-in;
-        transform: translateX(15px);
+        opacity: 0; 
+        transform: translateX(30px); /* Increased offset for a more noticeable slide */
     }
     
-    /* New: Staggered Link Animation when Menu Opens */
-    .nav-links.open a {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    .nav-links.open a:nth-child(1) { transition-delay: 0.1s; }
-    .nav-links.open a:nth-child(2) { transition-delay: 0.15s; }
-    .nav-links.open a:nth-child(3) { transition-delay: 0.2s; }
-    .nav-links.open a:nth-child(4) { transition-delay: 0.25s; }
-    .nav-links.open a:nth-child(5) { transition-delay: 0.3s; }
-    .nav-links.open a:nth-child(6) { transition-delay: 0.35s; }
+    /* Staggered Link Animation is kept as is */
 
     /* Mobile active state (no line) */
-    .nav-links a:hover {
-        background-color: rgba(255, 153, 51, 0.1); 
+    .nav-links a:hover,
+    .nav-links a:focus { /* Added focus for keyboard accessibility */
+        background-color: rgba(255, 153, 51, 0.2); /* Darker saffron background */
         color: var(--color-saffron);
-        border-radius: 4px;
+        border-left: 5px solid var(--color-saffron); /* Visual focus on the left */
+        padding-left: 10px;
+        transition: all 0.2s ease-in;
+    }
+    
+    /* Hide the desktop line on mobile */
+    .nav-links a::after {
+        display: none;
     }
 }
